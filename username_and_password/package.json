@@ -1,0 +1,25 @@
+{
+  "name": "username_and_password",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "prisma": "^5.17.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.17.0",
+    "nodemon": "^3.1.4"
+  }
+}
