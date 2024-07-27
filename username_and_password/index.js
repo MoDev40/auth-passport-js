@@ -2,6 +2,7 @@ import express, { json } from "express"
 import session from "express-session"
 import passport from "passport"
 import userRouter from "./routes/userRoute.js"
+import "./strategy/local-passport.js"
 
 const app = express()
 app.use(json())
@@ -10,12 +11,12 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie:{
-        secure:true,
         maxAge:1*60*60*1000
     }
 }))
 
 app.use(passport.initialize())
+app.use(passport.session())
 
 app.get("/",(req,res)=>{
     const session = req.session;
