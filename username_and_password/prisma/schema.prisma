@@ -23,5 +23,5 @@ model User {
 model Session {
   sid String @id
   sess Json
-  expire DateTime
+  expire DateTime @db.Timestamp()
 }
