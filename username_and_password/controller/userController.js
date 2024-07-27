@@ -30,3 +30,8 @@ export const signUp = async (req,res)=>{
         return res.status(500).send(error)   
     }
 }
+
+export async function user(req,res){
+    const user = req.user;
+    res.status(200).send(user)
+} 
