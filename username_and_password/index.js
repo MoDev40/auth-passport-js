@@ -1,7 +1,7 @@
 import express, { json } from "express"
 import session from "express-session"
 import passport from "passport"
-
+import userRouter from "./routes/userRoute.js"
 
 const app = express()
 app.use(json())
@@ -21,6 +21,8 @@ app.get("/",(req,res)=>{
     const session = req.session;
     res.send(session)
 })
+
+app.use("/api",userRouter)
 
 app.listen(4000,()=>{
     console.log("server listening port 4000")

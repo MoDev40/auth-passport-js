@@ -1,9 +1,10 @@
 import express from "express"
+import { signUp } from "../controller/userController.js"
 
-const route = express.Router()
+const router = express.Router()
 
-route.post("/auth/sign-up")
-route.post("/auth/sign-in")
-route.post("/auth/sign-out")
+router.post("/auth/sign-up",signUp)
+router.post("/auth/sign-in")
+router.post("/auth/sign-out")
 
-export default route
+export default router
