@@ -25,7 +25,7 @@ export const signUp = async (req,res)=>{
         if(!user){
             throw new Error("User is not created")
         }
-        return res.status(201).json(user)
+        return res.status(201).json({ message:"Successfully" })
     } catch (error) {
         return res.status(500).send(error)   
     }
@@ -33,5 +33,6 @@ export const signUp = async (req,res)=>{
 
 export async function user(req,res){
     const user = req.user;
-    res.status(200).send(user)
+    if(!user) return res.status(401).json({ message:"Unauthorized" })
+    res.status(200).json(user)
 } 
