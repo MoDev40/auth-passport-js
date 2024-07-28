@@ -10,8 +10,7 @@ export default passport.use(
         scope: ['user:email']
     },async function(accessToken,refreshToken,profile,done){
         try {
-            const { displayName,username,_json:{ name },emails} = profile
-            
+            const { displayName,username,_json:{ name },emails,provider} = profile
             const email = emails[0].value
             const user = await prisma.user.upsert({
                 where:{
@@ -20,10 +19,10 @@ export default passport.use(
                 create:{
                     email,
                     username:displayName || name || username,
+                    provider,
                 },
                 update:{
                     username:displayName || name || username,
-                    email:username
                 }
             })
     
