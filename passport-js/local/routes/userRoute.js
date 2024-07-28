@@ -9,7 +9,7 @@ router.post("/auth/sign-in",passport.authenticate("local"),function(req,res){
     return res.status(200).json({ message:"Successfully" })
 })
 router.get("/auth/user",user)
-router.post("/auth/sign-out",function(req,res){
+router.get("/auth/sign-out",function(req,res){
     if(!req.user) return res.status(401).json({ message:"Unauthorized" })
 
     req.logOut((error)=>{
