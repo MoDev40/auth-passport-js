@@ -1,14 +1,19 @@
 import genFunc from "connect-pg-simple"
+
 import express, { json } from "express"
+
 import session from "express-session"
 import passport from "passport"
-import userRouter from "./local/routes/userRoute.js"
-import "./strategy/local-passport.js"
+
+import { prisma } from "./config/config.js"
+
+import localRouter from "./local/routes/localRoute.js"
+import githubRoute from "./oauth/github/routes/githubRoute.js"
+import googleRoute from "./oauth/google/routes/googleRoute.js"
+
 import "./strategy/github-passport.js"
 import "./strategy/google-passport.js"
-import githubRoute from "./oauth/github/routes/githubRoute.js"
-import { prisma } from "./config/config.js"
-import googleRoute from "./oauth/google/routes/googleRoute.js"
+import "./strategy/local-passport.js"
 
 const app = express()
 
@@ -57,7 +62,7 @@ passport.deserializeUser(async function(id,done){
 })
 
 
-app.use("/api",userRouter)
+app.use("/api",localRouter)
 app.use("/api",githubRoute)
 app.use("/api",googleRoute)
 
