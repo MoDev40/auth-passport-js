@@ -4,6 +4,8 @@ import session from "express-session"
 import passport from "passport"
 import userRouter from "./local/routes/userRoute.js"
 import "./strategy/local-passport.js"
+import "./strategy/github-passport.js"
+import githubRoute from "./oauth/github/routes/githubRoute.js"
 
 const app = express()
 
@@ -35,6 +37,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/api",userRouter)
+app.use("/api",githubRoute)
 
 app.listen(4000,()=>{
     console.log("server listening port 4000")
