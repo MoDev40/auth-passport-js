@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import { prisma } from "../config/config.js"
+import { prisma } from "../../config/config.js"
 import { userSchema } from "../schema/schema.joi.js"
 
 export const signUp = async (req,res)=>{

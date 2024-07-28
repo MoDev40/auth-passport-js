@@ -2,7 +2,7 @@ import genFunc from "connect-pg-simple"
 import express, { json } from "express"
 import session from "express-session"
 import passport from "passport"
-import userRouter from "./routes/userRoute.js"
+import userRouter from "./local/routes/userRoute.js"
 import "./strategy/local-passport.js"
 
 const app = express()
