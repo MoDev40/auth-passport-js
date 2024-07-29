@@ -12,13 +12,24 @@ export const signUp = async (req,res)=>{
 
         const { username,email,password } = value
 
+        const isUserExists = await prisma.user.findUnique({
+            where:{
+                email
+            }
+        })
+
+        if(isUserExists){
+            throw new Error("User already exists")
+        }
+
         const hashedPassword = await bcrypt.hash(password,10)
 
         const user = await prisma.user.create({
             data:{
                 email,
                 username,
-                password:hashedPassword
+                password:hashedPassword,
+                provider:"local"
             }
         })
 

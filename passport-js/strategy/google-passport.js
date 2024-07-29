@@ -13,6 +13,16 @@ export default passport.use(
             const { displayName, emails,_json,provider } = profile
             const { given_name, email } = _json
             
+            const isUserExists = await prisma.user.findUnique({
+                where:{
+                    email
+                }
+            })
+
+            if(isUserExists && isUserExists.provider !== provider){
+                throw new Error("User already exists")
+            }
+            
             const user = await prisma.user.upsert({
                 where:{
                     email:email || emails[0].value
